@@ -8,10 +8,11 @@ class ApplicationController < ActionController::API
 
 
 #    Authorization: Bearer "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTIzIn0.AOXUao_6a_LbIcwkaZU574fPqvW6mPvHhwKC7Fatuws" 
+
  
     def decode_token
-        auth_header = request_headers["Authorization"]
-        if
+        auth_header = request.headers["Authorization"]
+        if  auth_header 
             token = auth_header.split(' ')[1]
             begin
                 JWT.decode(token, 'secret', true, algorithm: 'HS256')
